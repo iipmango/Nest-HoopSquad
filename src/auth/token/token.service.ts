@@ -7,9 +7,7 @@ export class TokenService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly config: ConfigService,
-  ) {
-    console.log('123123', this.config.get<string>('JWT_SECRET_KEY'));
-  }
+  ) {}
 
   createAccessToken(id: number) {
     const accessToken = this.jwtService.sign(
@@ -36,6 +34,7 @@ export class TokenService {
         expiresIn: '14d',
       },
     );
+    return refreshToken;
   }
   createAllToken(id: number) {
     const accessToken = this.createAccessToken(id);

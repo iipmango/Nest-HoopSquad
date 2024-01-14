@@ -17,7 +17,6 @@ describe('TokenService', () => {
     service = module.get<TokenService>(TokenService);
     accessToken = service.createAccessToken(1);
     refreshToken = service.createRefreshToken(1);
-    console.log(refreshToken);
   });
 
   it('should be defined', () => {
