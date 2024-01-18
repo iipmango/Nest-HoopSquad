@@ -11,7 +11,17 @@ export class userRepository extends Repository<auth> {
     newUser.password = userData.password;
 
     this.create(newUser);
+
+    return newUser.id;
   }
 
-  public async logIn(userData: authDto) {}
+  public async logIn(userData: authDto) {
+    return await this.findOneByOrFail(userData);
+  }
+
+  public async validate(userId: number) {
+    return await this.findOneByOrFail({
+      id: userId,
+    });
+  }
 }

@@ -16,10 +16,29 @@ export class AuthService {
   async validate(token: string) {
     const { id, type } = this.jwt.verifyToken(token);
 
-    await this.userData.findOneOrFail(id);
+    await this.userData.validate(id);
 
     return true;
   }
 
-  async register(userData: authDto) {}
+  async register(userData: authDto) {
+    const newUserId = await this.userData.register(userData);
+
+    const newUserToken = this.jwt.createAllToken(newUserId);
+
+    return {
+      accessToken: newUserToken.access,
+      refreshToken: newUserToken.refresh,
+    };
+  }
+
+  async logIn(userData: authDto) {
+    const user = await this.userData.logIn(userData);
+    const userToken = this.jwt.createAllToken(user.id);
+
+    return {
+      accessToken: userToken.access,
+      refreshToken: userToken.refresh,
+    };
+  }
 }
