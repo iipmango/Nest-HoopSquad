@@ -1,6 +1,13 @@
-import { PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
-export class auth {
+@Entity()
+export class user {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
 }
