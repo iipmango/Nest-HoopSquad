@@ -2,7 +2,7 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateMovieDTO {
   @IsString()
-  readonly title: string;
+  readonly Name: string;
   @IsNumber()
   readonly year: number;
   @IsOptional()
