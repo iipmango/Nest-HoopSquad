@@ -11,12 +11,10 @@ export class AuthService {
   constructor(
     private readonly jwt: TokenService,
     @InjectRepository(userRepository)
-    private user: userRepository,
+    private userData: userRepository,
   ) {}
 
   validate(token: string) {
     const { id, type } = this.jwt.verifyToken(token);
-
-    const userData = getRepository(user);
   }
 }
