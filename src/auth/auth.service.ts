@@ -14,7 +14,7 @@ export class AuthService {
   ) {}
 
   async validate(token: string) {
-    const { id, type } = this.jwt.verifyToken(token);
+    const id = this.jwt.verifyToken(token);
 
     await this.userData.validate(id);
 
@@ -39,6 +39,17 @@ export class AuthService {
     return {
       accessToken: userToken.access,
       refreshToken: userToken.refresh,
+    };
+  }
+
+  async change(userData: authDto, token: string) {
+    const id = this.jwt.verifyToken(token);
+    await this.userData.change(userData, id);
+
+    const updatedToken = this.jwt.createAllToken(id);
+    return {
+      accessToken: updatedToken.access,
+      refreshToken: updatedToken.refresh,
     };
   }
 }

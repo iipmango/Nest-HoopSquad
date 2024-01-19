@@ -3,7 +3,7 @@ import { AuthModule } from './auth/auth.module';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { auth } from './auth/entities/auth.entity';
+import { user } from './auth/entities/auth.entity';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { auth } from './auth/entities/auth.entity';
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
       database: 'localhoopsquad',
-      entities: [auth],
+      entities: [user],
       synchronize: true,
     }),
   ],

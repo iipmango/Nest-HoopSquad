@@ -16,6 +16,15 @@ export class AuthController {
     return await this.authService.logIn(userData);
   }
 
+  @Post('change')
+  async change(
+    @Body() userData: authDto,
+    @Query('authorization') authorization: string,
+  ) {
+    const token = authorization.slice(7, authorization.length);
+    return await this.authService.change(userData, token);
+  }
+
   @Get()
   validation(@Query('authorization') authorization: string) {
     const token = authorization.slice(7, authorization.length);

@@ -13,7 +13,6 @@ export class TokenService {
     const accessToken = this.jwtService.sign(
       {
         id: id,
-        type: 'access',
       },
       {
         secret: this.config.get<string>('JWT_SECRET_KEY'),
@@ -27,7 +26,6 @@ export class TokenService {
     const refreshToken = this.jwtService.sign(
       {
         id: id,
-        type: 'refresh',
       },
       {
         secret: this.config.get<string>('JWT_SECRET_KEY'),
