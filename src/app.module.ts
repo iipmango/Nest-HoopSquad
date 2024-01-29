@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { user } from './auth/entities/auth.entity';
+import { MatchModule } from './match/match.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { user } from './auth/entities/auth.entity';
       entities: [user],
       synchronize: true,
     }),
+    MatchModule,
   ],
   controllers: [AppController],
   providers: [],

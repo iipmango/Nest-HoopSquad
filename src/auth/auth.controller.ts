@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Header,
+  Headers,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { authDto } from './dto/auth.dto';
 
@@ -19,7 +28,7 @@ export class AuthController {
   @Post('change')
   async change(
     @Body() userData: authDto,
-    @Query('authorization') authorization: string,
+    @Headers('authorization') authorization: string,
   ) {
     const token = authorization.slice(7, authorization.length);
     return await this.authService.change(userData, token);
